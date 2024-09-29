@@ -21,7 +21,7 @@ let result = {};
       .map(i => i.trim())
       .filter(i => i.length)
     $.log('ℹ️ names', names)
-	let enableNotify = ($.lodash_get(arg, 'NOTIFY') || '1')
+	let enableNotify = ($.lodash_get(arg, 'NOTIFY') || 'on')
     // $.log('$response', $.toStr($response))
     let { body } = $response;
     body = JSON.parse(body);
@@ -48,7 +48,7 @@ let result = {};
         return true;
     });
 		
-		if (enableNotify == '1' && res.length) {
+		if (enableNotify === 'on' && res.length) {
 			await notify('Linux.do', '🔇已屏蔽以下用户的话题', `${res.join(',')}`)
     }
     result = {
