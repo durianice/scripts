@@ -2,11 +2,11 @@
 #!desc=Linux.do 屏蔽你不想看到的用户
 #!system=ios
 #!category=Linux.do
-#!arguments=NAMES:username
-#!arguments-desc=NAMES:\n填入多个用户名，逗号分开\n例: neo,floki,user3
+#!arguments=NAMES:username,NOTIFY:1
+#!arguments-desc=NAMES:\n填入多个用户名，逗号分开\n例: neo,floki,user3\n\nNOTIFY:\n屏蔽时通知。开启：1，关闭：0，默认开启
 
 [Script]
-BlockYou = type=http-response,pattern=^https?:\/\/linux\.do\/(new|latest)\.json.*,requires-body=1,max-size=0,binary-body-mode=0,debug=1,script-path=https://raw.githubusercontent.com/durianice/scripts/refs/heads/main/surge/modules/linuxdo/block-you.js,argument="NAMES={{{NAMES}}}"
+BlockYou = type=http-response,pattern=^https?:\/\/linux\.do\/(new|latest)\.json.*,requires-body=1,max-size=0,binary-body-mode=0,debug=1,script-path=https://raw.githubusercontent.com/durianice/scripts/refs/heads/main/surge/modules/linuxdo/block-you.js,argument="NAMES={{{NAMES}}}&NOTIFY={{{NOTIFY}}}"
 
 [MITM]
 hostname = %APPEND% linux.do
